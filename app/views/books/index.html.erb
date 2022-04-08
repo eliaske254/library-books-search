@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Books</h1>
+<h1> <%= link_to "Books", books_path %></h1>
 
 <%= form_with url: books_path, method: :get do |form| %>
   <div class="input-group">
@@ -31,7 +31,7 @@
 
      <td><%= link_to "show", book_path(book) %></td>
      <td><%= link_to "Edit", edit_book_path(book) %></td>
-     <td><%= link_to "Delete", book_path(book), "data-turbo-method": :delete %></td>
+     <td class="btn btn-outline-danger"><%= link_to  "Delete", book_path(book), "data-turbo-method": :delete %></td>
    </tr>
   <% end %>
   </tbody>
@@ -43,4 +43,4 @@
 
 <br>
 
-<%= link_to "New book", new_book_path %>
+<%= link_to "New book", new_book_path, class: 'btn btn-outline-primary'  %>
