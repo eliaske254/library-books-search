@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  include ActionView::RecordIdentifier
   before_action :set_book, only: %i[ show edit update destroy ]
 
   # GET /books or /books.json
@@ -58,6 +59,9 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
       format.json { head :no_content }
+      # format.turbo_stream { render turbo_stream.remove(@book) }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(dom_id(@book)), notice: "Book was successfully destroyed." }
+
     end
   end
 
